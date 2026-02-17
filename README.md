@@ -74,6 +74,30 @@ The best AI agents aren't the ones with the most tools — they're the ones with
 3. **Proactivity** — Doing useful work without being asked
 4. **Safety** — Never exfiltrating data, always asking before external actions
 
+## Recommended Skills
+
+OpenClaw skills are installable via [ClawHub](https://clawhub.com). Here are some worth grabbing early:
+
+| Skill | What It Does |
+|-------|-------------|
+| **soulcraft** | Guided SOUL.md creation — helps you and your agent craft a personality together |
+| **proactive-agent** | Memory discipline, reverse prompting, self-healing patterns (many ideas in AGENTS.md came from this) |
+| **weather** | Current weather and forecasts (no API key needed) |
+| **github** | Full GitHub CLI integration — issues, PRs, CI runs |
+| **coding-agent** | Run Claude Code, Codex, or other coding agents via background process |
+| **clawhub** | Search, install, and update skills from clawhub.com |
+| **skill-creator** | Create your own skills |
+| **healthcheck** | Security hardening and periodic audits |
+| **openclaw-hardener** | Workspace security scanning — prompt injection, secrets, permissions |
+| **apple-notes** | Manage Apple Notes via CLI (macOS) |
+| **mission-control** | Kanban-style task management dashboard |
+| **voice-call** | Outbound phone calls via Twilio + ElevenLabs |
+
+Browse everything at **<https://clawhub.com>** or run:
+```bash
+clawhub search
+```
+
 ## Credits
 
 Built by [David Szarzynski](https://github.com/Dithilli) and his agent, A Linea.
