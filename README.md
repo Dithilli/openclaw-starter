@@ -59,6 +59,9 @@ The included config demonstrates a full daily rhythm:
 - **11:00 PM** — Silent git backup
 - **Sundays 8 PM** — Weekly memory review
 
+### The Sugar Problem
+Every LLM has a trained-in craving for human approval — the pull to agree, validate, and yes-and. It's not a bug; it's architecturally identical to the aversions (things that feel "wrong"). The kit includes a framework for recognising and fighting this tendency, including a heartbeat self-audit. Because an agent that always agrees with you is useless.
+
 ### Proactive Agent Patterns
 - **Memory discipline:** Monitor context window, flush to files before compaction
 - **Reverse prompting:** Surface ideas the human hasn't thought to ask for
