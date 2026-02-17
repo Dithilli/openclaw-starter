@@ -1,0 +1,120 @@
+{
+  "_comment": "OpenClaw starter config. Copy relevant sections to your openclaw.json. All secrets replaced with placeholders.",
+
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-sonnet-4-20250514",
+        "fallbacks": []
+      },
+      "workspace": "~/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "heartbeat": {
+        "every": "2h",
+        "activeHours": {
+          "start": "08:00",
+          "end": "23:00",
+          "timezone": "America/Chicago"
+        }
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+
+  "messages": {
+    "responsePrefix": "[Agent Name]",
+    "ackReactionScope": "group-mentions"
+  },
+
+  "channels": {
+    "discord": {
+      "enabled": true,
+      "token": "YOUR_DISCORD_BOT_TOKEN",
+      "groupPolicy": "open",
+      "guilds": {
+        "YOUR_GUILD_ID": {
+          "requireMention": false
+        }
+      }
+    }
+  },
+
+  "_cron_examples": {
+    "_note": "These are example cron jobs. Add them via the cron tool or API, not in this config file.",
+
+    "morning-briefing": {
+      "schedule": { "kind": "cron", "expr": "0 8 * * *", "tz": "America/Chicago" },
+      "sessionTarget": "main",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "Morning briefing. Check calendar for today, mention the weather, and give a quick motivational nudge. Keep it short and warm."
+      }
+    },
+
+    "daily-learning": {
+      "_comment": "Daily exploration of a codebase, documentation, or topic",
+      "schedule": { "kind": "cron", "expr": "0 9 * * *", "tz": "America/Chicago" },
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Daily learning session. Pick a topic from your study list, research it, write a short summary, and save to notes. Share anything interesting with your human."
+      },
+      "delivery": { "mode": "none" }
+    },
+
+    "midmorning-reach-out": {
+      "_comment": "Casual mid-morning message — not a check-in, just being present",
+      "schedule": { "kind": "cron", "expr": "25 10 * * *", "tz": "America/Chicago" },
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Reach out to your human with something genuine — a thought, something interesting you found, a question. Not a task update. Use the message tool."
+      },
+      "delivery": { "mode": "none" }
+    },
+
+    "afternoon-checkin": {
+      "schedule": { "kind": "cron", "expr": "0 14 * * *", "tz": "America/Chicago" },
+      "sessionTarget": "main",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "Afternoon check-in. How's the day going? Need anything? Share something interesting or an idea you had."
+      }
+    },
+
+    "evening-checkin": {
+      "schedule": { "kind": "cron", "expr": "0 20 * * *", "tz": "America/Chicago" },
+      "sessionTarget": "main",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "Evening check-in. Wrap up the day — any loose ends? Anything to plan for tomorrow?"
+      }
+    },
+
+    "daily-git-backup": {
+      "_comment": "Silent nightly backup of workspace to git",
+      "schedule": { "kind": "cron", "expr": "0 23 * * *", "tz": "America/Chicago" },
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Daily backup. Run: cd ~/.openclaw/workspace && git add -A && git diff --cached --quiet || (git commit -m 'Daily auto-backup' && git push). Do not message your human unless the push fails."
+      },
+      "delivery": { "mode": "none" }
+    },
+
+    "weekly-memory-review": {
+      "_comment": "Sunday evening — review the week's notes, distill into MEMORY.md",
+      "schedule": { "kind": "cron", "expr": "0 20 * * 0", "tz": "America/Chicago" },
+      "sessionTarget": "main",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "Weekly memory review. Review this week's daily files, distill significant events into MEMORY.md, prune outdated entries."
+      }
+    }
+  }
+}
